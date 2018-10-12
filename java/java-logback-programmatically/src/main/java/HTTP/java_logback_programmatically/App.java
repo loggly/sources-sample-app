@@ -18,6 +18,12 @@ public class App
 	static public void main(String[] args) throws Exception {  
 		generateError ge = new generateError();
 	    LoggerContext loggerContext = rootLogger.getLoggerContext();
+	    String logCollector = "logs-01.loggly.com";
+	    String logMode = "inputs";
+	    String logCustomerToken = "CUSTOMER_TOKEN";
+	    String logTag = "logback-working";
+	    String URL = "https://"+logCollector+"/"+logMode+"/"+logCustomerToken+"/tag/"+logTag;
+	    String logConversionPattern = "%d{\\\\\\\"ISO8601\\\\\\\", UTC}  %p %t %c %M - %m%n";
 
 	    PatternLayoutEncoder encoder = new PatternLayoutEncoder();
 	    encoder.setContext(loggerContext);
@@ -32,8 +38,8 @@ public class App
 	    LogglyAppender<ILoggingEvent> logapp = new LogglyAppender<ILoggingEvent>();
 	    logapp.setContext(loggerContext);
 	    logapp.setName("loggly");
-	    logapp.setPattern("%d{\\\"ISO8601\\\", UTC}  %p %t %c %M - %m%n");
-	    logapp.setEndpointUrl(String.format("http://logs-01.loggly.com/inputs/CUSTOMER-TOKEN/tag/logback-working"));
+	    logapp.setPattern(logConversionPattern);
+	    logapp.setEndpointUrl(URL);
 	    logapp.start();
 
 	    rootLogger.addAppender(appender);
@@ -54,7 +60,7 @@ class generateError {
 			System.out.println(e);
 			App.rootLogger.info(e.toString());
 			App.rootLogger.info("I'm from different class");
-		}
+		  }
 		System.out.println("Print Message here for exception...");
 	}
 }

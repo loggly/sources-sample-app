@@ -1,1 +1,5 @@
 # Setting up loggly configurations programmatically.
+
+This sample **java logback using HTTP/S** project helps you to set your loggly configurations like **customer_token**, **loggly collector_url**, **conversion_pattern**, **tags** etc programmatically i.e. at code level. Setting configurations programmatically, will help you to be not dependent on the Loggly XML configuration file i.e. **logback.xml**. Please note that it's just an alternate of logback.xml loggly configuration. To send your java logs to Loggly, you must follow either way. 
+
+This project is all set to start sending your java application logs to Loggly. Please don't forget to replace your loggly customer token at line [#23](https://github.com/loggly/sources-sample-app/blob/master/java/java-logback-programmatically/src/main/java/HTTP/java_logback_programmatically/App.java#L23) of App.java file.
